@@ -1,4 +1,4 @@
-import matplotlib
+# import matplotlib
 import math
 import time
 
@@ -8,12 +8,20 @@ def function(x: float):
     return function_value
 
 
-def find_minimum
+def find_minimum_optimal_passive_search(a_border: float, b_border: float, epsilon: float) -> float:
+    number_of_dots = - 1 + (b_border - a_border) / epsilon
+    dots = []
+    current_x = a_border
+    while current_x <= b_border:
+        dot = (current_x, function(current_x))
+        dots.append(dot)
+        current_x += epsilon
+    print(f"calculated number of dots: {number_of_dots}, real number of dots: {len(dots)}")
 
 
 def main():
-    print(function(1))
-
+    epsilon = 0.1
+    find_minimum_optimal_passive_search(-5.0, 2.0, epsilon)
 
 if __name__ == "__main__":
     timer_start = time.time()
