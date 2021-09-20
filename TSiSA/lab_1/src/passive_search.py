@@ -1,4 +1,4 @@
-# import matplotlib
+import matplotlib.pyplot as plt
 import math
 import time
 
@@ -8,20 +8,51 @@ def function(x: float):
     return function_value
 
 
+def x_is_in_borders(x, a_border, b_border):
+    if a_border > b_border:
+        swap_tuple = (b_border, a_border)
+        a_border, b_border = swap_tuple
+    if a_border <= x <= b_border:
+        return True
+    return False
+
+
 def find_minimum_optimal_passive_search(a_border: float, b_border: float, epsilon: float) -> float:
-    number_of_dots = - 1 + (b_border - a_border) / epsilon
-    dots = []
+    function_in_a = function(a_border)
+    function_in_b = function(b_border)
+
     current_x = a_border
-    while current_x <= b_border:
-        dot = (current_x, function(current_x))
-        dots.append(dot)
-        current_x += epsilon
-    print(f"calculated number of dots: {number_of_dots}, real number of dots: {len(dots)}")
+    delta = epsilon
+    first_dot = (a_border, function_in_a)
+    if function_in_b < function_in_a:
+        current_x = b_border
+        delta = -epsilon
+        first_dot = (b_border, function_in_b)
+    x_min = current_x
+    dots = [first_dot]
+    while True:
+        current_x += delta
+        if not x_is_in_borders(current_x, a_border, b_border):
+            break
+        previous_x, previous_f = dots[-1]
+        current_f = function(current_x)
+
+        if current_f > previous_f:
+            break
+
+        x_min = current_x
+        current_dot = (current_x, current_f)
+        dots.append(current_dot)
+
+    print(f"INFO: minimum found in x = {x_min}")
+    plt.scatter(*zip(*dots))
+    plt.show()
 
 
 def main():
-    epsilon = 0.1
+    epsilon = 0.01
     find_minimum_optimal_passive_search(-5.0, 2.0, epsilon)
+
 
 if __name__ == "__main__":
     timer_start = time.time()
