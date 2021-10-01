@@ -1,11 +1,6 @@
-import matplotlib.pyplot as plt
-import math
-import time
 
-
-def function(x: float):
-    function_value = (1 - x) * (1 - x) + math.exp(x)
-    return function_value
+import function
+function = function.function
 
 
 def x_is_in_borders(x, a_border, b_border):
@@ -17,7 +12,7 @@ def x_is_in_borders(x, a_border, b_border):
     return False
 
 
-def find_minimum_optimal_passive_search(a_border: float, b_border: float, epsilon: float) -> float:
+def find_minimum_optimal_passive_search(a_border: float, b_border: float, epsilon: float) -> tuple:
     function_in_a = function(a_border)
     function_in_b = function(b_border)
 
@@ -26,9 +21,9 @@ def find_minimum_optimal_passive_search(a_border: float, b_border: float, epsilo
     first_dot = (a_border, function_in_a)
     if function_in_b < function_in_a:
         current_x = b_border
-        delta = -epsilon * 0.5
+        delta = -epsilon / 2
         first_dot = (b_border, function_in_b)
-    x_min = current_x
+    min_dot = first_dot
     dots = [first_dot]
     while True:
         current_x += delta
@@ -40,42 +35,22 @@ def find_minimum_optimal_passive_search(a_border: float, b_border: float, epsilo
         if current_f > previous_f:
             break
 
-        x_min = current_x
         current_dot = (current_x, current_f)
+        min_dot = current_dot
         dots.append(current_dot)
 
-    return x_min, dots
+    return min_dot, dots
 
 
-def plot_graph(f, a_border, b_border, step=0.1):
+def find_minimum_passive_search(a_border: float, b_border: float, epsilon: float) -> tuple:
     x = a_border
     dots = []
     while x_is_in_borders(x, a_border, b_border):
-        dots.append((x, f(x)))
-        x += step
-
-    plot_dots(dots)
-
-
-def plot_dots(dots):
-    plt.scatter(*zip(*dots))
-    plt.show()
+        dots.append((x, function(x)))
+        x += epsilon / 2
+    x_min = min(dots, key=lambda elem: elem[1])
+    return x_min, dots
 
 
-def main():
-    delta_n = 0.05
-    epsilon = 2 * delta_n
-    a_border = -5.0
-    b_border = 2.0
-
-    x_min, dots = find_minimum_optimal_passive_search(a_border, b_border, epsilon)
-    plot_dots(dots)
-    plot_graph(function, a_border, b_border, step=0.1)
 
 
-if __name__ == "__main__":
-    timer_start = time.time()
-    print(f"\nprogram has been started\n{'-' * 30}")
-    main()
-    timer_finish = time.time()
-    print(f"{'-' * 30}\nprogram finished in {timer_finish - timer_start} seconds")
