@@ -26,10 +26,9 @@ def main():
         toc = time.perf_counter()
         print(f"{'-' * 30}\n=== Computations finished in {toc - tic} seconds")
 
-    plot_dots(dots)
+        plot_dots(dots)
 
 
 if __name__ == "__main__":
-
     main()
 
