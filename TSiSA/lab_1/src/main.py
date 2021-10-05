@@ -15,18 +15,21 @@ def main():
     a_border = -5.0
     b_border = 2.0
 
-    # min_dot, dots = passive_search.find_minimum_optimal_passive_search(a_border, b_border, epsilon)
-    # min_dot, dots = passive_search.find_minimum_passive_search(a_border, b_border, epsilon)
-    min_dot, dots = fibonacci_search.find_minimum_fibonacci_search(a_border, b_border, epsilon)
+    methods = (
+        fibonacci_search.find_minimum_fibonacci_search,
+        passive_search.find_minimum_passive_search
+    )
+    for method in methods:
+        tic = time.perf_counter()
+        print(f"\n=== Computations started\n{'-' * 30}")
+        min_dot, dots = method(a_border, b_border, epsilon)
+        toc = time.perf_counter()
+        print(f"{'-' * 30}\n=== Computations finished in {toc - tic} seconds")
 
-    x_min, y_min = min_dot
-    print(f"INFO: minimum found in x = {x_min}, f({x_min}) = {y_min}")
     plot_dots(dots)
 
 
 if __name__ == "__main__":
-    timer_start = time.time()
-    print(f"\nprogram has been started\n{'-' * 30}")
+
     main()
-    timer_finish = time.time()
-    print(f"{'-' * 30}\nprogram finished in {timer_finish - timer_start} seconds")
+
