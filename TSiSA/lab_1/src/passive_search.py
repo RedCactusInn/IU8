@@ -3,7 +3,7 @@ import function
 function = function.function
 
 
-def x_is_in_borders(x, a_border, b_border):
+def x_is_in_borders(x: float, a_border: float, b_border: float) -> bool:
     if a_border > b_border:
         swap_tuple = (b_border, a_border)
         a_border, b_border = swap_tuple
