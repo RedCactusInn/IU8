@@ -1,0 +1,108 @@
+H:\bin2\WinPython\python-3.8.8\python.exe C:/Users/timuorbe/Documents/IU8/TSiSA/lab_1/src/main.py
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+epsilon = 0.1;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=== Computations started
+------------------------------
+INFO: Using method: FIBONACCI
+INFO: Number of estimations = 13
+INFO: Minimum found in x = 0.3483146067415728, y = 1.8413717278346602
+------------------------------
+=== Computations finished in 0.0001919000000000226 seconds
+
+=== Computations started
+------------------------------
+INFO: Using method: PASSIVE
+INFO: Number of estimations = 141
+INFO: Minimum found in x = 0.2999999999999906, y = 1.8398588075760036
+------------------------------
+=== Computations finished in 0.00012420000000001874 seconds
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+epsilon = 0.01;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=== Computations started
+------------------------------
+INFO: Using method: FIBONACCI
+INFO: Number of estimations = 18
+INFO: Minimum found in x = 0.31205673758867025, y = 1.8394981398486294
+------------------------------
+=== Computations finished in 0.00010599999999993948 seconds
+
+=== Computations started
+------------------------------
+INFO: Using method: PASSIVE
+INFO: Number of estimations = 1401
+INFO: Minimum found in x = 0.31499999999991574, y = 1.8394843109569967
+------------------------------
+=== Computations finished in 0.0010582999999999565 seconds
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+epsilon = 0.001;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=== Computations started
+------------------------------
+INFO: Using method: FIBONACCI
+INFO: Number of estimations = 23
+INFO: Minimum found in x = 0.31490955600155335, y = 1.8394843012882653
+------------------------------
+=== Computations finished in 9.959999999997748e-05 seconds
+
+=== Computations started
+------------------------------
+INFO: Using method: PASSIVE
+INFO: Number of estimations = 14001
+INFO: Minimum found in x = 0.31499999999994893, y = 1.8394843109569967
+------------------------------
+=== Computations finished in 0.011626200000000031 seconds
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+epsilon = 0.0001;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=== Computations started
+------------------------------
+INFO: Using method: FIBONACCI
+INFO: Number of estimations = 27
+INFO: Minimum found in x = 0.3149616794293104, y = 1.8394843034945958
+------------------------------
+=== Computations finished in 0.0006846000000000352 seconds
+
+=== Computations started
+------------------------------
+INFO: Using method: PASSIVE
+INFO: Number of estimations = 140001
+INFO: Minimum found in x = 0.3148999999949901, y = 1.8394843018769693
+------------------------------
+=== Computations finished in 0.12728060000000008 seconds
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+epsilon = 1e-05;
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+=== Computations started
+------------------------------
+INFO: Using method: FIBONACCI
+INFO: Number of estimations = 32
+INFO: Minimum found in x = 0.31492356138282585, y = 1.8394843009815038
+------------------------------
+=== Computations finished in 0.006198400000000048 seconds
+
+=== Computations started
+------------------------------
+INFO: Using method: PASSIVE
+INFO: Number of estimations = 1400001
+INFO: Minimum found in x = 0.3149249998951797, y = 1.839484300987432
+------------------------------
+=== Computations finished in 1.2307411 seconds
+
+Process finished with exit code 0

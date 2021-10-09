@@ -43,7 +43,6 @@ def find_minimum_fibonacci_search(a_border: float, b_border: float, epsilon: flo
     y_1 = function(x_1)
     y_2 = function(x_2)
 
-    min_dot = (x_1, y_1)
     dots = [(x_1, y_1), (x_2, y_2)]
 
     for i in range(number_of_iterations):
@@ -61,13 +60,10 @@ def find_minimum_fibonacci_search(a_border: float, b_border: float, epsilon: flo
         x_1 = a_border + (b_border - x_2)
         y_1 = function(x_1)
         dots.append((x_1, y_1))
+    min_dot = (x_2, y_2) if y_2 < y_1 else (x_1, y_1)
 
-    min_dot = min(dots, key=lambda elem: elem[1])
     print(f"INFO: Number of estimations = {len(dots)}")
     x_min, y_min = min_dot
     print(f"INFO: Minimum found in x = {x_min}, y = {y_min}")
     return min_dot, dots
-
-
-
 
