@@ -26,8 +26,9 @@ def main():
         print(f"\n\n{'+' * 80}\nepsilon = {epsilon};\n{'+' * 80}")
         for method in methods:
             tic = time.perf_counter()
+            method_name = re.sub('(find_minimum_|_search)','',method.__name__).upper()
             print(f"\n=== Computations started\n{'-' * 30}")
-            print(f"INFO: Using method: {re.sub('(find_minimum_|_search)','',method.__name__).upper()}")
+            print(f"INFO: Using method: {method_name}")
             min_dot, dots = method(a_border, b_border, epsilon)
             toc = time.perf_counter()
             print(f"{'-' * 30}\n=== Computations finished in {toc - tic} seconds")
