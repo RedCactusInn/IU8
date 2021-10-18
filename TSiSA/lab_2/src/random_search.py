@@ -19,4 +19,3 @@ def random_search(func, q, p, a_border, b_border) -> tuple:
     min_dot = min(dots, key=lambda elem: elem[1])
     return min_dot, dots
 
-
