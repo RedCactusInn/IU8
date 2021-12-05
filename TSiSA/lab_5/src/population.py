@@ -3,8 +3,8 @@ import random
 from individual import Individual
 
 
-probability_of_crossover = 1.0
-probability_of_mutation  = 0.70
+probability_of_crossover = 0.5
+probability_of_mutation  = 0.1
 
 
 class Population:
@@ -47,25 +47,25 @@ class Population:
 
         self.new_intermediate_population()
         print("population after selection:")
-        self.print_chromosomes(self._intermediate_population)
+        self._print_chromosomes(self._intermediate_population)
         assert len(self._individuals) == self._number_of_individuals
 
         self.recombinate()
         print("population after recombination:")
-        self.print_chromosomes(self._individuals)
+        self._print_chromosomes(self._individuals)
         assert len(self._individuals) == self._number_of_individuals
 
         self.mutate()
         print("population after mutation:")
-        self.print_chromosomes(self._individuals)
+        self._print_chromosomes(self._individuals)
         assert len(self._individuals) == self._number_of_individuals
 
     @staticmethod
-    def print_chromosomes(individuals):
+    def _print_chromosomes(individuals):
         for individual in individuals:
             print(individual.get_chromosome())
         print()
-            
+
     def new_intermediate_population(self):
         self._intermediate_population = []
         marks = self.get_roulette_marks()
@@ -74,7 +74,7 @@ class Population:
 
     def get_roulette_marks(self):
         fitnesses = [individual.get_fitness(self._fitness_function, self._domain) for individual in self._individuals]
-        fitnesses_normalized = self.get_fitnesses_normalized_positively(fitnesses)
+        fitnesses_normalized = self.normalize_values(fitnesses)
         fitness_total = sum(fitnesses_normalized)
         assert fitness_total > 0
         marks = []
@@ -86,12 +86,6 @@ class Population:
             marks.append(marks[-1] + pass_chance)
         marks[-1] = 1.0
         return marks
-
-    @staticmethod
-    def get_fitnesses_normalized_positively(fitnesses):
-        min_fit = min(fitnesses)
-        fitnesses_normalized = [fitness - min_fit for fitness in fitnesses]
-        return fitnesses_normalized
 
     def sample(self, marks):
         assert len(marks) == len(self._individuals)
@@ -109,6 +103,7 @@ class Population:
                 for lonely_wolf in (mother, father):
                     if lonely_wolf:
                         new_generation.append(lonely_wolf)
+                continue
             if self.do_we_make_crossover():
                 bruder, schwester = self.crossover(mother, father)
                 for brand_new_one in (bruder, schwester):
@@ -154,7 +149,14 @@ class Population:
         global probability_of_mutation
         return random.random() < probability_of_mutation
 
-
-
+    @staticmethod
+    def normalize_values(values):
+        minimum, maximum = (min(values), max(values))
+        if minimum > 0:
+            return values
+        width = maximum - minimum
+        low_pass = width * 0.001
+        normalized_values = [value - minimum + low_pass for value in values]
+        return normalized_values
 
 
